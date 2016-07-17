@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<script>
+	var vk=+prompt('Введите сумму вклада:');
+	var pc=+prompt('Введите процентную ставку');
+	var age=+prompt('Укажите срок вклада');
+	for (var i = 1; i <= age; i++) {
+		vk+=vk*pc/100;
+		alert('Сумма вклада за '+i+' год составит:'+vk.toFixed(2));//Округление до 2-х цифр после запятой
+	}
+	</script>
