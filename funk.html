@@ -8,9 +8,35 @@
 		var cards=['6','7','8','9','10','J','Q','K','A'];
 		return cards[getRandomInt(0,cards.length-1)];
 	}
+	function getSum(arr){
+		var sum=0;
+		var ace=0;
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i]=='A') 
+				{
+					ace++;
+					sum+=11;
+				}
+			else if (arr[i]=="J"||arr[i]=="Q"||arr[i]=="K")
+			{
+				sum+=10;
+			}
+			else sum+=parseInt(arr[i]);
+		}
+		while(sum>21&&ace!=0){
+			sum-=10;
+			ace--;
+		}
+		return sum;
+	}
+
+
+
+
 	var dealer=[getCard()];
-	var player=[getCard(),getCard()];
+	var player=[getCard(),getCard(),getCard()];
 	alert('Дилер: '+dealer.join(' ')+" Игрок: "+player.join(' '));
+	alert('Сумма очков игрока: '+getSum(player));
 
 
 
