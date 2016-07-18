@@ -5,7 +5,7 @@
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	function getCard(){
-		var cards=['6','7','8','9','10','J','Q','K','A'];
+		var cards=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 		return cards[getRandomInt(0,cards.length-1)];
 	}
 	function getSum(arr){
@@ -31,12 +31,53 @@
 	}
 
 
-
-
 	var dealer=[getCard()];
 	var player=[getCard(),getCard()];
-	alert('Дилер: '+dealer.join(' ')+" Игрок: "+player.join(' '));
-	alert('Сумма очков игрока: '+getSum(player));
+	var flag_vic=false;
+	function getStatus(){
+		return 'У диллера: '+dealer.join(' ')+' У игрока: '+player.join(' ')+' Желаете продолжить? (1 - Да, 2 - Нет)';
+		}
+
+	do{
+		var otv=prompt(getStatus());
+		if (otv==1) {
+			player.push(getCard());
+			if (getSum(player)>21) {
+				alert('Результат больше 21. Вы проиграли!!! У диллера: '+getSum(dealer)+' У вас: '+getSum(player));
+				break;
+			}
+			else if (getSum(player)==21) {
+				flag_vic=true;
+				break;
+			}
+
+		} 
+		if (otv!=1) {
+			flag_vic=true;			
+		}	
+	//alert('Сумма очков игрока: '+getSum(player));
+
+	}
+	while(otv==1);
+	while(flag_vic==true){
+		if(getSum(dealer)<getSum(player)){
+			dealer.push(getCard());
+		}
+		else if (getSum(dealer)==getSum(player)) {
+			alert('Победила дружба! У диллера: '+getSum(dealer)+' У вас: '+getSum(player));
+			break;
+		}
+		else if (getSum(dealer)>21){
+			alert('Ваша победа! У диллера: '+getSum(dealer)+' У вас: '+getSum(player));
+			break;
+		}
+		else {
+			alert('Вы проиграли! У диллера: '+getSum(dealer)+' У вас: '+getSum(player));
+			break;
+		}
+	}
+
+
 
 
 
